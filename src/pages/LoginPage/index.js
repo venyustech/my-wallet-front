@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 
 import { Button, Container, Input, Title } from './styles';
@@ -6,6 +8,8 @@ import { Button, Container, Input, Title } from './styles';
 function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate();
+
 
     const [isLoading, setIsLoading] = useState(false);
     const [inputLoading, setInputLoading] = useState("");
@@ -17,7 +21,13 @@ function LoginPage() {
         e.preventDefault();
         setIsLoading(true);
         setInputLoading("disabled")
-        console.log("logou");
+        const promise = axios.post('http://localhost:5000/login', {
+            email: email,
+            password: password,
+        });
+        promise.then(response => {
+            navigate('/main');
+        })
 
     }
     return <Container>

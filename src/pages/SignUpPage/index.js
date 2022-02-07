@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+
 
 import { Button, Container, Input, Title } from './styles';
 
@@ -7,6 +10,8 @@ function SignUpPage() {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
+
 
     const [isLoading, setIsLoading] = useState(false);
     const [inputLoading, setInputLoading] = useState("");
@@ -18,9 +23,19 @@ function SignUpPage() {
         e.preventDefault();
         setIsLoading(true);
         setInputLoading("disabled")
-        console.log("logou");
-
+        const promise = axios.post('http://localhost:5000/sign-up', {
+            name: name,
+            email: email,
+            password: password,
+        });
+        promise.then(response => handleSuccess(response.data))
+        promise.catch(error => alert("deu ruim! tenta de novo."))
     }
+    function handleSuccess(answer) {
+        alert("Usuário cadastrado. Faça Login agora")
+        navigate('/');
+    }
+
 
 
     return <Container>
