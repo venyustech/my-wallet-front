@@ -8,6 +8,30 @@ const Container = styled.div`
     font-size: 14px;
     min-height: 100vh;
 
-`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    gap: 16px;
 
-export { Container };
+    @media(max-width: 300px) {
+
+            Img, Input, Button{
+            width: 80%;
+        }
+    }
+
+`
+const Title = styled.h1`
+    font-family: var(--font-title);
+`
+const Input = styled.input``
+const Button = styled.button``
+
+export { Container, Title, Input, Button };

@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     --main-color: #A328D6;
     --botton-color: #FF4791;
     --font-family: 'Roboto', sans-serif;
+    --font-title: 'Saira Stencil One', cursive;
     --font-color: #fff;
 
 }

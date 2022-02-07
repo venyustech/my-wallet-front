@@ -1,10 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Container } from './styles';
+
+import { Button, Container, Input, Title } from './styles';
 
 function LoginPage() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [inputLoading, setInputLoading] = useState("");
+
+
+
+
+    function handleLogin(e) {
+        e.preventDefault();
+        setIsLoading(true);
+        setInputLoading("disabled")
+        console.log("logou");
+
+    }
     return <Container>
-        <div>Login Page</div>
+        <Title>MyWallet</Title>
+        <form onSubmit={handleLogin}>
+            <Input type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                placeholder="email"
+                disabled={inputLoading}
+            />
+
+            <Input type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                placeholder="senha"
+                disabled={inputLoading}
+            />
+
+            <Button>{isLoading ?
+                ("loading...") : ("entrar")}
+            </Button>
+        </form>
+
     </Container>;
 }
 
